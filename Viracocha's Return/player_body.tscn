@@ -1,0 +1,48 @@
+[gd_scene load_steps=5 format=3 uid="uid://bl8j1qnj24jrm"]
+
+[ext_resource type="Script" path="res://PlayerBody.gd" id="1_1chj2"]
+[ext_resource type="Texture2D" uid="uid://4qbshgs8pmdv" path="res://viracochaTileset1.png" id="2_xhi8t"]
+[ext_resource type="Script" path="res://DashTimer.gd" id="3_k383p"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t8l4p"]
+size = Vector2(12, 28)
+
+[node name="PlayerBody" type="CharacterBody2D"]
+script = ExtResource("1_1chj2")
+SPEED = 100.0
+JUMP_VELOCITY = -180.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_t8l4p")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -4.76837e-07)
+texture = ExtResource("2_xhi8t")
+region_enabled = true
+region_rect = Rect2(18, 4, 12, 28)
+
+[node name="DashTimer" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
+script = ExtResource("3_k383p")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="LevitateTimer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="RayCastLeft" type="RayCast2D" parent="."]
+position = Vector2(0, 1)
+target_position = Vector2(-10, 0)
+
+[node name="RayCastRight" type="RayCast2D" parent="."]
+position = Vector2(0, 1)
+target_position = Vector2(10, 0)
+
+[node name="DashCooldown" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
+[connection signal="timeout" from="LevitateTimer" to="." method="_on_levitate_timer_timeout"]
+[connection signal="timeout" from="DashCooldown" to="." method="_on_dash_cooldown_timeout"]

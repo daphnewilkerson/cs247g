@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://dngvj84b4yg28"]
+
+[ext_resource type="Texture2D" uid="uid://buqg3hxdywwub" path="res://pixilart-drawing.png" id="1_unki1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h8qxk"]
+size = Vector2(16, 16)
+
+[node name="Block" type="StaticBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_h8qxk")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_unki1")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)

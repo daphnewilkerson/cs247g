@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://c4msooxte41ih"]
+
+[ext_resource type="Texture2D" uid="uid://buqg3hxdywwub" path="res://pixilart-drawing.png" id="1_6j85c"]
+[ext_resource type="Script" path="res://Player.gd" id="1_g86fl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tm7fj"]
+size = Vector2(16, 32)
+
+[node name="Player" type="Area2D"]
+script = ExtResource("1_g86fl")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_tm7fj")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_6j85c")
+region_enabled = true
+region_rect = Rect2(16, 0, 16, 32)
