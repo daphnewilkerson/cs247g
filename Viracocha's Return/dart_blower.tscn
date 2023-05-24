@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://dhanqw2hcjwp5"]
+
+[ext_resource type="Script" path="res://dart_blower.gd" id="1_p3vd7"]
+[ext_resource type="Texture2D" uid="uid://doc6ugjqcasrr" path="res://shyguy.png" id="2_l84a1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iwbck"]
+size = Vector2(16, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hmkr5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_l84a1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="DartBlower" type="CharacterBody2D"]
+script = ExtResource("1_p3vd7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -5)
+shape = SubResource("RectangleShape2D_iwbck")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -5)
+scale = Vector2(0.03025, 0.03025)
+sprite_frames = SubResource("SpriteFrames_hmkr5")
+
+[node name="Mouth" type="Marker2D" parent="."]
+position = Vector2(-14, -12)
+
+[node name="ShootTimer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]

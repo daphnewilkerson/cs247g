@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=3 uid="uid://orikmctlfyuj"]
+
+[ext_resource type="Texture2D" uid="uid://ngx5uwxn2jq7" path="res://flower.png" id="1_puy3m"]
+[ext_resource type="Script" path="res://blow_dart_guy.gd" id="1_sihnd"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qs4c8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_puy3m")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Flower" type="CharacterBody2D"]
+script = ExtResource("1_sihnd")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(1, -1)
+scale = Vector2(0.017625, 0.017625)
+sprite_frames = SubResource("SpriteFrames_qs4c8")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(1, -1)
+scale = Vector2(4.23437, 4.23438)
+polygon = PackedVector2Array(0, 2, 1, 2, 2, 1, 2, 0, 1, -2, 0, -3, -0.94465, -1.65314, -2, 0, -2, 2)
+
+[node name="ShootTimer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[node name="Muzzle" type="Marker2D" parent="."]
+position = Vector2(-5, -10)
+
+[connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]

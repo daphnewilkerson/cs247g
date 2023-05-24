@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://fpstjsikqfd7"]
+
+[ext_resource type="Texture2D" uid="uid://sbki1maegd58" path="res://goomba.png" id="1_6lg02"]
+[ext_resource type="Script" path="res://mob.gd" id="1_ustus"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cuvv4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_6lg02")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4s0rc"]
+radius = 11.0
+
+[node name="Mob" type="RigidBody2D"]
+gravity_scale = 2.66454e-15
+script = ExtResource("1_ustus")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.034, 0.034)
+sprite_frames = SubResource("SpriteFrames_cuvv4")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_4s0rc")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]
