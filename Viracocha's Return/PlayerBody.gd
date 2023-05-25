@@ -14,6 +14,10 @@ var dashR = false;
 var dashL = false;
 var levitate = false;
 var justWallJumped = false;
+var ropeGrabbed = false;
+var ropeReleased = false;
+var canGrab = true;
+var ropePart = null;
 
 @onready var rayCastLeftNode = $RayCastLeft
 @onready var rayCastRightNode = $RayCastRight
@@ -22,8 +26,26 @@ var justWallJumped = false;
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func _physics_process(delta):
+	for i in get_slide_collision_count():
+		var collision = get_slide_collision(i)
+		var collider = collision.get_collider()
+		if collider is Dart:
+			get_tree().reload_current_scene()
+
+	
+	if ropeGrabbed:
+		global_position = ropePart.global_position
+		if Input.is_action_just_pressed("jump"):
+			ropeGrabbed = false;
+			ropePart = null;
+			$RopeCooldown.start();
+			ropeReleased = true;
+	
+	if ropeReleased:
+		jumps = 0;
+	
 	# Add the gravity.
-	if not is_on_floor():
+	if not is_on_floor() and not ropeGrabbed:
 		if jumps == 0:
 			jumps = 1
 		if not levitate:
@@ -49,7 +71,10 @@ func _physics_process(delta):
 		if jumps < max_jumps:
 			velocity.y = JUMP_VELOCITY
 			jumps += 1
-		
+	
+	if (rayCastLeftNode.is_colliding() and Input.is_action_pressed("move_left")) or (rayCastRightNode.is_colliding() and Input.is_action_pressed("move_right")):
+		if velocity.y > 50:
+			velocity.y = 50;
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
@@ -76,16 +101,19 @@ func _physics_process(delta):
 			dashR = true
 			$DashTimer.start()
 	
-	if Input.is_action_just_pressed("dash"):
+	if Input.is_action_just_pressed("dash") and canDash:
 		if Input.is_action_pressed("move_right"):
-			velocity.x = 500
+			velocity.x = DASH_SPEED
+			doDash()
 		elif Input.is_action_pressed("move_left"):
-			velocity.x = -500
+			velocity.x = -DASH_SPEED
+			doDash()
 
 	move_and_slide()
 
 func doDash():
-	dashL = false
+	dashL = false;
+	dashR = false;
 	canDash = false
 	levitate = true
 	dashReady = false;
@@ -105,3 +133,14 @@ func _on_levitate_timer_timeout():
 func _on_dash_cooldown_timeout():
 	dashReady = true
 
+
+
+func _on_grab_zone_area_entered(area):
+	if area.is_in_group("rope") and canGrab:
+		ropeGrabbed = true;
+		canGrab = false;
+		ropePart = area;
+
+
+func _on_rope_cooldown_timeout():
+	canGrab = true;
