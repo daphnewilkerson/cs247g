@@ -32,6 +32,9 @@ wait_time = 3.0
 autostart = true
 
 [node name="Muzzle" type="Marker2D" parent="."]
-position = Vector2(1, -15)
+position = Vector2(-5, -9)
+
+[node name="Muzzle2" type="Marker2D" parent="."]
+position = Vector2(8, -9)
 
 [connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]

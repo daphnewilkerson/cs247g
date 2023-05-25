@@ -58,11 +58,6 @@ texture = ExtResource("1_mapvp")
 region_enabled = true
 region_rect = Rect2(39, 16, 2, 16)
 
-[node name="Area2D" type="Area2D" parent="Sprite2D2" groups=["rope"]]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D2/Area2D"]
-shape = SubResource("RectangleShape2D_0de8n")
-
 [node name="Sprite2D3" type="Sprite2D" parent="."]
 position = Vector2(0, 40)
 texture = ExtResource("1_mapvp")

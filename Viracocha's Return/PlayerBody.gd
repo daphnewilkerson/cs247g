@@ -54,8 +54,7 @@ func _physics_process(delta):
 			$RopeCooldown.start();
 			ropeReleased = true;
 	
-	if ropeReleased:
-		jumps = 0;
+	
 	
 	# Add the gravity.
 	if not is_on_floor() and not ropeGrabbed:
@@ -67,6 +66,9 @@ func _physics_process(delta):
 		jumps = 0
 		justWallJumped = false;
 		canDash = true
+		
+	if ropeReleased:
+		jumps = 0;
 	
 	# Handle Jump.
 	if Input.is_action_just_pressed("jump"):

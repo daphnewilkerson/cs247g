@@ -15,6 +15,8 @@ func shoot():
 	var d = Dart.instantiate()
 	var pos = $Muzzle.global_position
 	var dir = (player.global_position - $Muzzle.global_position).normalized()
+	if dir.x > 0:
+		pos = $Muzzle2.global_position
 	var angle = dir.angle()
 #	d.direction = dir
 	d.start(pos, angle, dir)
