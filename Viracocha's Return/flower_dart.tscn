@@ -1,5 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://beob62rg7l30m"]
+[gd_scene load_steps=4 format=3 uid="uid://beob62rg7l30m"]
 
+[ext_resource type="Script" path="res://dart.gd" id="1_ndana"]
 [ext_resource type="Texture2D" uid="uid://dhef4m5hdibk7" path="res://dart.png" id="2_e5qus"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g0ecy"]
@@ -7,6 +8,7 @@ size = Vector2(10, 3)
 
 [node name="Dart" type="CharacterBody2D"]
 position = Vector2(5, 0)
+script = ExtResource("1_ndana")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-5, -7.10543e-15)

@@ -13,11 +13,11 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func shoot():
 	var d = Dart.instantiate()
-	d.global_position = $Muzzle.global_position
+	var pos = $Muzzle.global_position
 	var dir = (player.global_position - $Muzzle.global_position).normalized()
-	d.global_rotation = dir.angle()
-	d.direction = dir
-#	d.start($Muzzle.global_position, dir.angle() + PI / 2.0)
+	var angle = dir.angle()
+#	d.direction = dir
+	d.start(pos, angle, dir)
 	get_tree().root.add_child(d)
 
 func _on_shoot_timer_timeout():

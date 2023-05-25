@@ -8,11 +8,13 @@ const JUMP_VELOCITY = -400.0
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var direction: Vector2 = Vector2.LEFT
 
-func _process(delta):
-	translate(direction*SPEED*delta)
+func start(pos, angle, dir):
+	global_position = pos
+	global_rotation = angle
+	direction = dir
 
 func _physics_process(delta):
-	var collision = move_and_collide(velocity * delta)
+	var collision = move_and_collide(direction * SPEED * delta)
 	if collision:
 		var collider = collision.get_collider()
 		if collider is PlayerBody:

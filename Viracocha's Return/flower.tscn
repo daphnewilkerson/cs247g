@@ -25,13 +25,13 @@ sprite_frames = SubResource("SpriteFrames_qs4c8")
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 position = Vector2(1, -1)
 scale = Vector2(4.23437, 4.23438)
-polygon = PackedVector2Array(0, 2, 1, 2, 2, 1, 2, 0, 1, -2, 0, -3, -0.94465, -1.65314, -2, 0, -2, 2)
+polygon = PackedVector2Array(0, 2, 1, 2, 2, 1, 2, 0, 1, -2, 0, -2.59778, -0.94465, -1.65314, -2, 0, -2, 2)
 
 [node name="ShootTimer" type="Timer" parent="."]
 wait_time = 3.0
 autostart = true
 
 [node name="Muzzle" type="Marker2D" parent="."]
-position = Vector2(-5, -10)
+position = Vector2(1, -15)
 
 [connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
