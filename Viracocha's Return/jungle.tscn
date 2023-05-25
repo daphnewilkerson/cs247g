@@ -245,4 +245,4 @@ position = Vector2(1912, -328)
 metadata/_edit_group_ = true
 
 [node name="Flower" parent="." instance=ExtResource("8_1oi2c")]
-position = Vector2(673, -223)
+position = Vector2(246, -38)

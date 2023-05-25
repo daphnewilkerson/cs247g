@@ -31,7 +31,10 @@ polygon = PackedVector2Array(0, 2, 1, 2, 2, 1, 2, 0, 1, -2, 0, -2.59778, -0.9446
 wait_time = 3.0
 autostart = true
 
-[node name="Muzzle" type="Marker2D" parent="."]
-position = Vector2(1, -15)
+[node name="MuzzleLeft" type="Marker2D" parent="."]
+position = Vector2(-4, -9)
+
+[node name="MuzzleRight" type="Marker2D" parent="."]
+position = Vector2(7, -9)
 
 [connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]

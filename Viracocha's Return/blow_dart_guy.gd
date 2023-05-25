@@ -13,8 +13,10 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func shoot():
 	var d = Dart.instantiate()
-	var pos = $Muzzle.global_position
-	var dir = (player.global_position - $Muzzle.global_position).normalized()
+	var dir = (player.global_position - global_position).normalized()
+	var pos = $MuzzleLeft.global_position
+	if dir.x > 0: 
+		pos = $MuzzleRight.global_position
 	var angle = dir.angle()
 #	d.direction = dir
 	d.start(pos, angle, dir)
