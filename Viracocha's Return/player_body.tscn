@@ -1,8 +1,10 @@
-[gd_scene load_steps=29 format=3 uid="uid://bl8j1qnj24jrm"]
+[gd_scene load_steps=32 format=3 uid="uid://bl8j1qnj24jrm"]
 
 [ext_resource type="Script" path="res://PlayerBody.gd" id="1_1chj2"]
 [ext_resource type="Texture2D" uid="uid://c5fyj6u6u36ab" path="res://viracochaanimations.png" id="2_011eg"]
 [ext_resource type="Script" path="res://DashTimer.gd" id="3_k383p"]
+[ext_resource type="PackedScene" uid="uid://dwvme7st1qmq2" path="res://actionable.tscn" id="4_g4dnj"]
+[ext_resource type="Resource" uid="uid://vlatd2ke53r6" path="res://dialog/main.dialogue" id="5_2n515"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xpxji"]
 size = Vector2(15, 23)
@@ -185,8 +187,12 @@ graph_offset = Vector2(3.01929, 0)
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_7gug7"]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lh4sc"]
+radius = 8.0
+
 [node name="PlayerBody" type="CharacterBody2D"]
 position = Vector2(0, -13)
+collision_layer = 16
 script = ExtResource("1_1chj2")
 SPEED = 100.0
 JUMP_VELOCITY = -180.0
@@ -253,6 +259,15 @@ parameters/conditions/doubleJumping = false
 parameters/conditions/idle = false
 parameters/conditions/jumping = false
 parameters/conditions/running = false
+
+[node name="Actionable" parent="." instance=ExtResource("4_g4dnj")]
+collision_layer = 0
+collision_mask = 16
+dialogue_resource = ExtResource("5_2n515")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Actionable"]
+shape = SubResource("CapsuleShape2D_lh4sc")
+one_way_collision_margin = 0.0
 
 [connection signal="area_entered" from="GrabZone" to="." method="_on_grab_zone_area_entered"]
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
