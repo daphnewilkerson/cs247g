@@ -5,6 +5,3 @@
 [node name="Actionable" type="Area2D"]
 collision_layer = 17
 script = ExtResource("1_3vmsg")
-
-[node name="Timer" type="Timer" parent="."]
-wait_time = 5.0
