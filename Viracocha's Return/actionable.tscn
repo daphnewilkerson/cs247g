@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://dwvme7st1qmq2"]
+
+[ext_resource type="Script" path="res://actionable.gd" id="1_3vmsg"]
+
+[node name="Actionable" type="Area2D"]
+collision_layer = 17
+script = ExtResource("1_3vmsg")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
