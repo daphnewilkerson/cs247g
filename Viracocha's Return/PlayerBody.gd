@@ -43,7 +43,7 @@ func _physics_process(delta):
 		var collision = get_slide_collision(i)
 		var collider = collision.get_collider()
 		if collider is Dart:
-			get_tree().reload_current_scene()
+			global_position = lastCheckpoint
 
 	
 	if ropeGrabbed:
