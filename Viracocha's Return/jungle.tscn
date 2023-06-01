@@ -271,7 +271,19 @@ position = Vector2(1912, -328)
 metadata/_edit_group_ = true
 
 [node name="Flower" parent="." instance=ExtResource("8_1oi2c")]
+
 position = Vector2(640, -8)
 
 [node name="IntiGod" parent="." instance=ExtResource("9_01g7r")]
 position = Vector2(-160, -472)
+
+position = Vector2(1419, -292)
+
+[node name="Flower2" parent="." instance=ExtResource("8_1oi2c")]
+position = Vector2(1563, -294)
+
+[node name="Flower3" parent="." instance=ExtResource("8_1oi2c")]
+position = Vector2(1727, -377)
+
+[node name="Flower4" parent="." instance=ExtResource("8_1oi2c")]
+position = Vector2(1004, -361)
