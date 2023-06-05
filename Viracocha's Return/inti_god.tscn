@@ -1,22 +1,22 @@
 [gd_scene load_steps=6 format=3 uid="uid://u1aayp6yyjah"]
 
-[ext_resource type="Texture2D" uid="uid://co7oi0wx1bci4" path="res://Jungle.png" id="1_jmmpg"]
+[ext_resource type="Texture2D" uid="uid://c248ek1awgadb" path="res://pachamama.png" id="1_mip30"]
 [ext_resource type="PackedScene" uid="uid://dwvme7st1qmq2" path="res://actionable.tscn" id="2_hevec"]
 [ext_resource type="Resource" uid="uid://vlatd2ke53r6" path="res://dialog/main.dialogue" id="3_w74cw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oxyas"]
-size = Vector2(38, 22)
+size = Vector2(22, 28)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u0ly0"]
-size = Vector2(36, 20)
+size = Vector2(18, 26)
 
 [node name="IntiGod" type="StaticBody2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(1.125, 1.125)
-texture = ExtResource("1_jmmpg")
+texture = ExtResource("1_mip30")
 region_enabled = true
-region_rect = Rect2(0, 0.000367165, 32, 15.9996)
+region_rect = Rect2(8, 0, 16, 32)
 
 [node name="Actionable" parent="." instance=ExtResource("2_hevec")]
 collision_layer = 0
@@ -24,10 +24,12 @@ collision_mask = 16
 dialogue_resource = ExtResource("3_w74cw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Actionable"]
+position = Vector2(0, 2)
 shape = SubResource("RectangleShape2D_oxyas")
 debug_color = Color(0, 0.6, 0.701961, 0.419608)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
 shape = SubResource("RectangleShape2D_u0ly0")
 
 [connection signal="body_entered" from="Actionable" to="Actionable" method="_on_body_entered"]
