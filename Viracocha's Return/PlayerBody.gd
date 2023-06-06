@@ -18,11 +18,16 @@ var ropeGrabbed = false;
 var ropeReleased = false;
 var canGrab = true;
 var ropePart = null;
+var shieldRightOn = false;
+var shieldLeftOn = false;
 var lastCheckpoint : Vector2 = Vector2.ZERO;
 
 @onready var rayCastLeftNode = $RayCastLeft
 @onready var rayCastRightNode = $RayCastRight
 @onready var animationTree = $AnimationTree
+@onready var shieldRight = $ShieldRight
+@onready var shieldLeft = $ShieldLeft
+@onready var playerSprite = $PlayerSprite
 @onready var state_machine = animationTree["parameters/playback"]
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -106,7 +111,7 @@ func _physics_process(delta):
 	velocity.x = move_toward(velocity.x, direction, ACCELERATION_SPEED * delta)
 	
 	if Input.is_action_just_pressed("move_left"):
-		$Sprite2D.flip_h = true;
+		playerSprite.flip_h = true;
 		if dashL:
 			velocity.x = -DASH_SPEED
 			doDash()
@@ -114,7 +119,7 @@ func _physics_process(delta):
 			dashL = true
 			$DashTimer.start()
 	elif Input.is_action_just_pressed("move_right"):
-		$Sprite2D.flip_h = false;
+		playerSprite.flip_h = false;
 		if dashR:
 			velocity.x = DASH_SPEED
 			doDash()
@@ -129,6 +134,19 @@ func _physics_process(delta):
 		elif Input.is_action_pressed("move_left"):
 			velocity.x = -DASH_SPEED
 			doDash()
+			
+	if Input.is_action_just_pressed("shield_right"):
+		shieldRight.visible = true;
+		shieldLeft.visible = false;
+		shieldRightOn = true;
+	elif Input.is_action_just_released("shield_right"):
+		shieldRight.visible = false;
+	if Input.is_action_just_pressed("shield_left"):
+		shieldLeft.visible = true;
+		shieldRight.visible = false;
+		shieldLeftOn = true;
+	elif Input.is_action_just_released("shield_left"):
+		shieldLeft.visible = false;
 
 	move_and_slide()
 
