@@ -9,6 +9,7 @@ var dist_traveled = 0
 var Dart = preload("res://flower_dart.tscn")
 
 @onready var player = get_tree().get_nodes_in_group("player")[0]
+@onready var _animated_sprite = $AnimatedSprite2D
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -23,6 +24,7 @@ func shoot():
 
 
 func _physics_process(delta):
+	_animated_sprite.play("walking")
 	var collision = move_and_collide(direction * speed * delta)
 	if collision:
 		var collider = collision.get_collider()
