@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://beob62rg7l30m"]
 
-[ext_resource type="Script" path="res://dart.gd" id="1_u8vo2"]
+[ext_resource type="Script" path="res://dart.gd" id="1_ymuu0"]
 [ext_resource type="Texture2D" uid="uid://dhef4m5hdibk7" path="res://dart.png" id="2_e5qus"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g0ecy"]
@@ -11,7 +11,7 @@ size = Vector2(12, 5)
 
 [node name="Dart" type="CharacterBody2D"]
 position = Vector2(5, 0)
-script = ExtResource("1_u8vo2")
+script = ExtResource("1_ymuu0")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-5, -7.10543e-15)
@@ -28,4 +28,9 @@ shape = SubResource("RectangleShape2D_g0ecy")
 position = Vector2(-5, -0.5)
 shape = SubResource("RectangleShape2D_4l2om")
 
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

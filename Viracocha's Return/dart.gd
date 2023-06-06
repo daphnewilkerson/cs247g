@@ -35,3 +35,7 @@ func _on_area_2d_area_entered(area):
 	if area.is_in_group("shield"):
 		direction.x = -direction.x
 		global_rotation = -global_rotation
+
+
+func _on_timer_timeout():
+	queue_free()
