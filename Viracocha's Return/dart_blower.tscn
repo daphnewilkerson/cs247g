@@ -43,4 +43,7 @@ position = Vector2(-15, -8)
 wait_time = 3.0
 autostart = true
 
+[node name="Mouth2" type="Marker2D" parent="."]
+position = Vector2(16, -8)
+
 [connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]

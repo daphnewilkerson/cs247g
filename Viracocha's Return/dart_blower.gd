@@ -16,11 +16,22 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 	
 func shoot():
 	var d = Dart.instantiate()
+	var dir = (player.global_position - global_position).normalized()
 	var pos = $Mouth.global_position
-	var dir = Vector2.LEFT
-	var angle = dir.angle()
-	d.start(pos, angle, dir)
+	var dartDir = Vector2.LEFT
+	if dir.x > 0: 
+		pos = $Mouth2.global_position
+		dartDir = Vector2.RIGHT
+	
+	var angle = dartDir.angle()
+
+	d.start(pos, angle, dartDir)
 	get_tree().root.add_child(d)
+	
+func switchDir():
+	direction = -direction
+	dist_traveled = 0
+	_animated_sprite.flip_h = not _animated_sprite.flip_h
 
 
 func _physics_process(delta):
@@ -30,13 +41,11 @@ func _physics_process(delta):
 		var collider = collision.get_collider()
 		if collider is PlayerBody:
 			player.global_position = player.lastCheckpoint
-		direction = -direction
-		dist_traveled = 0
+		switchDir()
 	
 	dist_traveled += abs(velocity.x)
 	if dist_traveled >= patrol_dist:
-		direction = -direction
-		dist_traveled = 0
+		switchDir()
 
 
 func _on_shoot_timer_timeout():

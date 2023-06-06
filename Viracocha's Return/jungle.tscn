@@ -327,7 +327,7 @@ position = Vector2(1016, -72)
 position = Vector2(-232, -255)
 
 [node name="Flower2" parent="." instance=ExtResource("8_1oi2c")]
-position = Vector2(1563, -294)
+position = Vector2(1915, -259)
 
 [node name="Flower3" parent="." instance=ExtResource("8_1oi2c")]
 position = Vector2(1727, -377)
@@ -336,4 +336,4 @@ position = Vector2(1727, -377)
 position = Vector2(1004, -361)
 
 [node name="DartBlower" parent="." instance=ExtResource("11_ijp64")]
-position = Vector2(560, -8)
+position = Vector2(1877, -133)
