@@ -19,9 +19,19 @@ func _physics_process(delta):
 	var collision = move_and_collide(direction * SPEED * delta)
 	if collision:
 		var collider = collision.get_collider()
-		if collider is PlayerBody:
+		if collider.is_in_group("hitbox1"):
+#		if collider is PlayerBody:
 #			get_tree().reload_current_scene()
 			player.global_position = player.lastCheckpoint
-		if collider is Flower:
+#		elif collider.is_in_group("shield"):
+#			direction.x = -direction.x
+		elif collider is Flower:
 			return
 		queue_free()
+		
+
+
+func _on_area_2d_area_entered(area):
+	if area.is_in_group("shield"):
+		direction.x = -direction.x
+		global_rotation = -global_rotation

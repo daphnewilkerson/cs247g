@@ -1,10 +1,11 @@
-[gd_scene load_steps=32 format=3 uid="uid://bl8j1qnj24jrm"]
+[gd_scene load_steps=33 format=3 uid="uid://bl8j1qnj24jrm"]
 
 [ext_resource type="Script" path="res://PlayerBody.gd" id="1_1chj2"]
 [ext_resource type="Texture2D" uid="uid://c5fyj6u6u36ab" path="res://viracochaanimations.png" id="2_011eg"]
 [ext_resource type="Script" path="res://DashTimer.gd" id="3_k383p"]
-[ext_resource type="PackedScene" uid="uid://dwvme7st1qmq2" path="res://actionable.tscn" id="4_g4dnj"]
+[ext_resource type="PackedScene" path="res://actionable.tscn" id="4_g4dnj"]
 [ext_resource type="Resource" uid="uid://vlatd2ke53r6" path="res://dialog/main.dialogue" id="5_2n515"]
+[ext_resource type="Texture2D" uid="uid://nsvkuoq11axq" path="res://shield.png" id="6_yk1kw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xpxji"]
 size = Vector2(15, 23)
@@ -20,7 +21,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("PlayerSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -32,7 +33,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:frame_coords")
+tracks/1/path = NodePath("PlayerSprite:frame_coords")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -49,7 +50,7 @@ step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/path = NodePath("PlayerSprite:frame_coords")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -66,7 +67,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("PlayerSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -83,7 +84,7 @@ step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/path = NodePath("PlayerSprite:frame_coords")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -100,7 +101,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("PlayerSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -190,7 +191,7 @@ graph_offset = Vector2(3.01929, 0)
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lh4sc"]
 radius = 8.0
 
-[node name="PlayerBody" type="CharacterBody2D"]
+[node name="PlayerBody" type="CharacterBody2D" groups=["player"]]
 position = Vector2(0, -13)
 collision_layer = 16
 script = ExtResource("1_1chj2")
@@ -203,7 +204,7 @@ JUMP_VELOCITY = -180.0
 position = Vector2(0.5, -3.5)
 shape = SubResource("RectangleShape2D_xpxji")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="." groups=["hitbox1"]]
 position = Vector2(0.5, -0.5)
 shape = SubResource("RectangleShape2D_t8l4p")
 
@@ -223,7 +224,7 @@ target_position = Vector2(-7, 0)
 position = Vector2(1, 2)
 target_position = Vector2(7, 0)
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="PlayerSprite" type="Sprite2D" parent="."]
 texture = ExtResource("2_011eg")
 hframes = 10
 vframes = 2
@@ -268,6 +269,31 @@ dialogue_resource = ExtResource("5_2n515")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Actionable"]
 shape = SubResource("CapsuleShape2D_lh4sc")
 one_way_collision_margin = 0.0
+
+[node name="ShieldRight" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(11, 0)
+texture = ExtResource("6_yk1kw")
+region_enabled = true
+region_rect = Rect2(22, 4, 8, 26)
+
+[node name="ShieldLeft" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-10, 0)
+texture = ExtResource("6_yk1kw")
+region_enabled = true
+region_rect = Rect2(34, 4, 8, 26)
+
+[node name="ShieldRightArea" type="Area2D" parent="." groups=["shield"]]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ShieldRightArea"]
+polygon = PackedVector2Array(10, 0, 8, 6, 8, 13, 11, 13, 13, 11, 14, 9, 15, 5, 15, -5, 14, -9, 13, -11, 12, -12, 11, -13, 8, -13, 8, -6)
+
+[node name="ShieldLeftArea" type="Area2D" parent="." groups=["shield"]]
+position = Vector2(-20, 0)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ShieldLeftArea"]
+polygon = PackedVector2Array(12, 0, 13, 6, 13, 13, 10, 13, 8, 11, 7, 9, 6, 5, 6, -5, 7, -9, 8, -11, 10, -13, 13, -13, 13, -6)
 
 [connection signal="area_entered" from="GrabZone" to="." method="_on_grab_zone_area_entered"]
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]

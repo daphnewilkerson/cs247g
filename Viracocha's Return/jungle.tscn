@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bw6tb1qk887tb"]
+[gd_scene load_steps=17 format=3 uid="uid://cvnjej5xkyg1q"]
 
 [ext_resource type="Texture2D" uid="uid://4qbshgs8pmdv" path="res://viracochaTileset1.png" id="1_08di3"]
 [ext_resource type="PackedScene" uid="uid://d0t6aukd5bcw1" path="res://rope.tscn" id="2_k4oeu"]
@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://b4o4r0fmvnekl" path="res://fire.tscn" id="6_flrpm"]
 [ext_resource type="PackedScene" uid="uid://d4ae0qs2oaxt6" path="res://coin.tscn" id="7_mkdbh"]
 [ext_resource type="PackedScene" uid="uid://orikmctlfyuj" path="res://flower.tscn" id="8_1oi2c"]
-[ext_resource type="PackedScene" uid="uid://u1aayp6yyjah" path="res://inti_god.tscn" id="9_01g7r"]
+[ext_resource type="PackedScene" uid="uid://bcu1ebaaw7amk" path="res://inti_god.tscn" id="9_01g7r"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_r1h7n"]
 texture = ExtResource("1_08di3")
@@ -187,8 +187,8 @@ position = Vector2(1656, -304)
 [node name="rope2" parent="." instance=ExtResource("2_k4oeu")]
 position = Vector2(1768, -336)
 
-[node name="PlayerBody" parent="." groups=["player"] instance=ExtResource("2_k5x01")]
-position = Vector2(-160, -253)
+[node name="PlayerBody" parent="." instance=ExtResource("2_k5x01")]
+position = Vector2(816, -272)
 SPEED = 120.0
 
 [node name="directions" type="Sprite2D" parent="."]
