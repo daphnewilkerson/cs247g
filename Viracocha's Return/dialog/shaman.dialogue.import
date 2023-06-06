@@ -1,0 +1,14 @@
+[remap]
+
+importer="dialogue_manager_compiler_8"
+type="Resource"
+uid="uid://c4hvcf4c0hu63"
+path="res://.godot/imported/shaman.dialogue-e38b07fc6fb62f9211c73966a622bb70.tres"
+
+[deps]
+
+source_file="res://dialog/shaman.dialogue"
+dest_files=["res://.godot/imported/shaman.dialogue-e38b07fc6fb62f9211c73966a622bb70.tres"]
+
+[params]
+

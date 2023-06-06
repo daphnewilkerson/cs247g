@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://bh1p50yhmn6fv"]
+
+[ext_resource type="Texture2D" uid="uid://bfcnlgef36u8a" path="res://shaman_static.png" id="1_v6a2j"]
+[ext_resource type="PackedScene" uid="uid://dwvme7st1qmq2" path="res://actionable.tscn" id="2_aj7kc"]
+[ext_resource type="Resource" uid="uid://c4hvcf4c0hu63" path="res://dialog/shaman.dialogue" id="3_0br8s"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oxyas"]
+size = Vector2(22, 28)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u0ly0"]
+size = Vector2(18, 26)
+
+[node name="Shaman" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(1.125, 1.125)
+texture = ExtResource("1_v6a2j")
+region_enabled = true
+region_rect = Rect2(8, 0, 16, 32)
+
+[node name="Actionable" parent="." instance=ExtResource("2_aj7kc")]
+collision_layer = 0
+collision_mask = 16
+dialogue_resource = ExtResource("3_0br8s")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Actionable"]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_oxyas")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_u0ly0")
+
+[connection signal="body_entered" from="Actionable" to="Actionable" method="_on_body_entered"]
+[connection signal="body_exited" from="Actionable" to="Actionable" method="_on_body_exited"]

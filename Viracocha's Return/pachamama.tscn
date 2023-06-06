@@ -10,7 +10,7 @@ size = Vector2(22, 28)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u0ly0"]
 size = Vector2(18, 26)
 
-[node name="IntiGod" type="StaticBody2D"]
+[node name="Pachamama" type="StaticBody2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(1.125, 1.125)
