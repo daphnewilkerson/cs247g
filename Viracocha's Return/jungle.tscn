@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cvnjej5xkyg1q"]
+[gd_scene load_steps=18 format=3 uid="uid://cvnjej5xkyg1q"]
 
 [ext_resource type="Texture2D" uid="uid://4qbshgs8pmdv" path="res://viracochaTileset1.png" id="1_08di3"]
 [ext_resource type="PackedScene" uid="uid://d0t6aukd5bcw1" path="res://rope.tscn" id="2_k4oeu"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://d4ae0qs2oaxt6" path="res://coin.tscn" id="7_mkdbh"]
 [ext_resource type="PackedScene" uid="uid://orikmctlfyuj" path="res://flower.tscn" id="8_1oi2c"]
 [ext_resource type="PackedScene" uid="uid://bcu1ebaaw7amk" path="res://inti_god.tscn" id="9_01g7r"]
+[ext_resource type="PackedScene" uid="uid://dhanqw2hcjwp5" path="res://dart_blower.tscn" id="11_ijp64"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_r1h7n"]
 texture = ExtResource("1_08di3")
@@ -333,3 +334,6 @@ position = Vector2(1727, -377)
 
 [node name="Flower4" parent="." instance=ExtResource("8_1oi2c")]
 position = Vector2(1004, -361)
+
+[node name="DartBlower" parent="." instance=ExtResource("11_ijp64")]
+position = Vector2(560, -8)

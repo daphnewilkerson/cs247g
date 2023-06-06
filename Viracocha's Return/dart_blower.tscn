@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dhanqw2hcjwp5"]
+[gd_scene load_steps=6 format=3 uid="uid://dhanqw2hcjwp5"]
 
 [ext_resource type="Script" path="res://dart_blower.gd" id="1_p3vd7"]
-[ext_resource type="Texture2D" uid="uid://doc6ugjqcasrr" path="res://shyguy.png" id="2_l84a1"]
+[ext_resource type="Texture2D" uid="uid://c0dv1w6pqyecw" path="res://dart-blower1.png" id="2_vr624"]
+[ext_resource type="Texture2D" uid="uid://c5okyr7rlcvup" path="res://dart-blower2.png" id="3_rgikg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iwbck"]
 size = Vector2(16, 24)
@@ -10,10 +11,13 @@ size = Vector2(16, 24)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_l84a1")
+"texture": ExtResource("2_vr624")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_rgikg")
 }],
 "loop": true,
-"name": &"default",
+"name": &"walking",
 "speed": 5.0
 }]
 
@@ -25,12 +29,15 @@ position = Vector2(0, -5)
 shape = SubResource("RectangleShape2D_iwbck")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -5)
-scale = Vector2(0.03025, 0.03025)
+position = Vector2(-3, -5)
+scale = Vector2(0.0632812, 0.0683387)
 sprite_frames = SubResource("SpriteFrames_hmkr5")
+animation = &"walking"
+frame = 1
+flip_h = true
 
 [node name="Mouth" type="Marker2D" parent="."]
-position = Vector2(-14, -12)
+position = Vector2(-15, -8)
 
 [node name="ShootTimer" type="Timer" parent="."]
 wait_time = 3.0

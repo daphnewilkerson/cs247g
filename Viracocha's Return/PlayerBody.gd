@@ -147,9 +147,15 @@ func _physics_process(delta):
 		shieldLeftOn = true;
 	elif Input.is_action_just_released("shield_left"):
 		shieldLeft.visible = false;
-
 	move_and_slide()
-
+	var collision = get_last_slide_collision()
+	if collision:
+		var collider = collision.get_collider()
+		if collider:
+			if collider is DartBlower or collider is Flower or collider is Dart:
+				global_position = lastCheckpoint
+	
+	
 func doDash():
 	dashL = false;
 	dashR = false;

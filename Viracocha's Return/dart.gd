@@ -25,7 +25,7 @@ func _physics_process(delta):
 			player.global_position = player.lastCheckpoint
 #		elif collider.is_in_group("shield"):
 #			direction.x = -direction.x
-		elif collider is Flower:
+		elif collider is Flower or collider is DartBlower:
 			return
 		queue_free()
 		
